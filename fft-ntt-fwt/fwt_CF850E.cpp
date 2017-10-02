@@ -1,19 +1,18 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#include <cstdio>
-
 const int N = 20;
+const int Mod = 1e9 + 7;
 
 int n, U;
-int a[1<<N], b[1<<N], c[1<<N];
+long long a[1<<N], b[1<<N], c[1<<N];
 char ss[(1<<N) + 10];
 
-void trans( int a[], int flag ) {
+void trans( long long a[], int flag ) {
     for( int b=0; b<n; b++ ) {
         int u = U ^ (1<<b);
         for( int s=u,t=1<<(n-1); t; s=(s-1)&u,t-- ) {
-            int l=a[s], r=a[s|(1<<b)];
+            long long l=a[s], r=a[s|(1<<b)];
             if( flag==1 ) {
                 a[s] = l+r;
                 a[s|(1<<b)] = l-r;
@@ -51,6 +50,6 @@ int main() {
 	for(int i = 0; i <= U; i++) {
 		ans += 1LL * c[i] * (1LL<<bitscount(i));
 	}
-	cout << ans * 3 << endl;
+	printf("%d\n", (int)(ans * 3 % Mod));
 }
 
